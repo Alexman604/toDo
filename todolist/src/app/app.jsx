@@ -31,13 +31,33 @@ class App extends Component {
     }
 
 
+    deleteTask = (id) => {
+        this.setState(({data}) =>{
+            return { data: data.filter(item => item.id !== id)}
+        })
+    }
+
+    onToggleDone = (id) => {
+        this.setState(({data}) => ({
+            data: data.map(item => {
+                if (item.id === id) {return {...item, done: !item.done}}
+                return item;
+            })
+
+        }))
+    }
+
+
 render(){
     const {data} = this.state;
+    const doneTasks = this.state.data.filter(item => item.done).length;
     return(
         <div className="app">
-            <Header/>
+            <Header doneTasks = {doneTasks}/>
             <AddForm onAddTask = {this.onAddTask}/>
-            <TodoList data = {data}/>
+            <TodoList data = {data} 
+                onDeleteTask = {this.deleteTask} 
+                onToggleDone = {this.onToggleDone}/>
            
 
         </div>

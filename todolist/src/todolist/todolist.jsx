@@ -1,12 +1,13 @@
 import TodoItem from '../todoitem/todoitem'
 import './todolist.css'
 
-const TodoList = ({data, onDelete, onDone}) => {
+const TodoList = ({data, onDeleteTask, onToggleDone}) => {
     const elements = data.map(item => {
         const {id, ...itemProps} = item;
         return (<TodoItem {...itemProps} 
             key = {id} 
-            onDelete = {() => onDelete(id)}
+            onDeleteTask = {() => onDeleteTask(id)}
+            onToggleDone = {()=>onToggleDone(id)}
           //  onEdit = {() => onEdit(id)}
 
             />)

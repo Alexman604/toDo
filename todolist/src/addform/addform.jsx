@@ -23,8 +23,8 @@ class AddForm extends Component {
         return (
         <div className="addform">
         
-            <form 
-            className="addform" onSubmit={this.onSubmit}>
+            <form className="addform" onSubmit={this.onSubmit}>
+                
                 <button type="submit" className="btn btn-info">add</button>
                 <input  name = "task"  type="text" className="input" onChange={this.onValueChange} value={task} placeholder="Add new task"/>
                               
