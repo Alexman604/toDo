@@ -5,7 +5,9 @@ class AddForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            task: '',
+            taskName: '',
+            taskDescription:'',
+
         } 
         
     }
@@ -15,18 +17,19 @@ class AddForm extends Component {
  
      onSubmit = (event) => {
          event.preventDefault();
-         this.props.onAddTask(this.state.task);
-         this.setState({task:''})
+         this.props.onAddTask(this.state.taskName, this.state.taskDescription);
+         this.setState({taskName:'', taskDescription:''})
      }
     render() {
-            const {task} = this.state;
+            const {taskName, taskDescription} = this.state;
         return (
         <div className="addform">
         
             <form className="addform" onSubmit={this.onSubmit}>
-                
+
                 <button type="submit" className="btn btn-info">add</button>
-                <input  name = "task"  type="text" className="input" onChange={this.onValueChange} value={task} placeholder="Add new task"/>
+                <input  name = "taskName"  type="text" className="input" onChange={this.onValueChange} value={taskName} placeholder="Task Name"/>
+                <input  name = "taskDescription"  type="text" className="input" onChange={this.onValueChange} value={taskDescription} placeholder="Task Description"/>
                               
             </form>
         </div>
