@@ -14,6 +14,20 @@ class App extends Component {
                 {task: 'finish', date: '18.02.22', done: false, id:3},
             ],
         }
+        this.maxId = 4;
+    }
+
+    onAddTask = (task) => {
+        const newTask = {
+            task,
+            date:new Date().toLocaleString("en-US"),
+            done: false,
+            id: this.maxId++
+        }
+     this.setState(({data}) => {
+        const newArr = [...data, newTask]
+        return {data: newArr};
+     } );  
     }
 
 
@@ -22,7 +36,7 @@ render(){
     return(
         <div className="app">
             <Header/>
-            <AddForm/>
+            <AddForm onAddTask = {this.onAddTask}/>
             <TodoList data = {data}/>
            
 

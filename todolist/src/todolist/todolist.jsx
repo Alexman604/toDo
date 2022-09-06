@@ -7,7 +7,7 @@ const TodoList = ({data, onDelete, onDone}) => {
         return (<TodoItem {...itemProps} 
             key = {id} 
             onDelete = {() => onDelete(id)}
-            onEdit = {() => onEdit(id)}
+          //  onEdit = {() => onEdit(id)}
 
             />)
     })
