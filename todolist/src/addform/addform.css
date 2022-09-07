@@ -1,0 +1,9 @@
+.addform {
+    display:flex;
+    flex-direction: column;
+}
+
+.inputDescription{
+    min-height: 100px;
+    resize: vertical;
+}
