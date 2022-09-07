@@ -9,7 +9,17 @@ class TodoItem extends Component {
             taskNameEdit: '',
             taskDescriptionEdit: ''
         }
+       console.log(props)
     }
+
+    onDeleteTasks = () =>{
+        this.props.onDeleteTask(this.props.id)
+    }
+    
+    onDone = () => {
+        this.props.onToggleDone(this.props.id)
+    }
+
 
     onEdit() {
         this.setState({edit: !this.state.edit});
@@ -21,9 +31,9 @@ class TodoItem extends Component {
  
    onSubmitChange = (event) => {
     event.preventDefault();
-    this.props.onChangeTask(this.state.taskNameEdit, this.state.taskDescriptionEdit)
+    this.props.onChangeTask(this.state.taskNameEdit, this.state.taskDescriptionEdit, this.props.id)
     
-    console.log(this.state.taskNameEdit, this.state.taskDescriptionEdit);
+
     this.setState({edit: !this.state.edit});
 
    }
@@ -39,8 +49,8 @@ class TodoItem extends Component {
 
  return(
     <li className='item'>
-        <button onClick={onDeleteTask}>delete</button>
-        <input type="checkbox" id="done" name="done" onChange={onToggleDone}/>
+        <button onClick={this.onDeleteTasks}>delete</button>
+        <input type="checkbox" id="done" name="done" onChange={this.onDone}/>
         
         {this.state.edit ? 
         (

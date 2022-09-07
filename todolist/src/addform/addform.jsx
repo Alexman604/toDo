@@ -7,9 +7,8 @@ class AddForm extends Component {
         this.state = {
             taskName: '',
             taskDescription:'',
-
         } 
-        
+       
     }
     onValueChange = (event) => {
         this.setState({[event.target.name]: event.target.value})
@@ -21,12 +20,11 @@ class AddForm extends Component {
          this.setState({taskName:'', taskDescription:''})
      }
     render() {
-            const {taskName, taskDescription} = this.state;
+        const {taskName, taskDescription} = this.state;
+        
         return (
         <div className="addform">
-        
-            <form className="addform" onSubmit={this.onSubmit}>
-
+                <form className="addform" onSubmit={this.onSubmit}>
                 <button type="submit" className="btn btn-info">add</button>
                 <input  name = "taskName"  type="text" className="input" onChange={this.onValueChange} value={taskName} placeholder="Task Name"/>
                 <input  name = "taskDescription"  type="text" className="input" onChange={this.onValueChange} value={taskDescription} placeholder="Task Description"/>

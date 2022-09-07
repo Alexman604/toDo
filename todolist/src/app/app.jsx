@@ -1,7 +1,7 @@
 import { Component } from "react";
 import AddForm from "../addform/addform";
 import Header from "../header/header";
-import TodoList from "../todolist/todolist";
+import TodoItem from "../todoitem/todoitem";
 import "./app.css"
 
 class App extends Component {
@@ -32,10 +32,10 @@ class App extends Component {
     }
 
     onChangeTask = (taskNameChanged, taskDescriptionChanged, id) =>{
-        console.log("taskNameChanged",taskNameChanged);
+        console.log(taskNameChanged, taskDescriptionChanged, id);
     }
 
-    deleteTask = (id) => {
+    onDeleteTask = (id) => {
         this.setState(({data}) =>{
             return { data: data.filter(item => item.id !== id)}
         })
@@ -51,7 +51,6 @@ class App extends Component {
         }))
     }
 
-
 render(){
     const {data} = this.state;
     const doneTasks = this.state.data.filter(item => item.done).length;
@@ -59,11 +58,28 @@ render(){
         <div className="app">
             <Header doneTasks = {doneTasks}/>
             <AddForm onAddTask = {this.onAddTask}/>
-            <TodoList data = {data} 
-                onDeleteTask = {this.deleteTask} 
-                onToggleDone = {this.onToggleDone}
-                onChangeTask = {this.onChangeTask}/>
-           
+            
+            <ul className="todolist">
+                {data.map(item => {
+                
+                return (<TodoItem  
+                    key = {item.id} 
+                    id = {item.id}
+
+                    taskName = {item.taskName}
+                    taskDescription = {item.taskDescription}
+                    date = {item.date}
+                    done = {item.done}
+                    onDeleteTask = {this.onDeleteTask}
+                    onToggleDone = {this.onToggleDone}
+                    onChangeTask = {this.onChangeTask}
+                    />) })           
+                }
+            </ul>
+            
+            
+            
+      
 
         </div>
 
