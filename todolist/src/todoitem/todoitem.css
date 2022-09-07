@@ -5,3 +5,10 @@
 .normal {
     margin: 1.2rem;
 }
+
+
+
+li { 
+    display: flex;
+
+}

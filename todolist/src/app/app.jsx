@@ -8,32 +8,55 @@ class App extends Component {
     constructor (props){
         super(props);
         this.state = {
-            data: [
-                {taskName: 'clean', taskDescription: 'car', date: '17.02.22', done: false, id:1},
-                {taskName: 'read', taskDescription: 'book', date: '18.02.22', done: false, id:2},
-                {taskName: 'finish', taskDescription: 'work', date: '18.02.22', done: false, id:3},
-            ],
+            data: []
         }
-        this.maxId = 4;
+        this.maxId = 1;
     }
 
+    componentDidMount() {
+        localStorage.clear()
+        const dataFromLS = JSON.parse(localStorage.getItem('data'));
+        if (dataFromLS === null) {localStorage.setItem('data', JSON.stringify(this.state.data))}
+        else   {this.setState(() => ({data: dataFromLS}));}
+      };
+
     onAddTask = (taskName, taskDescription) => {
-        const newTask = {
-            taskName,
-            taskDescription,
-            date:new Date().toLocaleString("en-US"),
-            done: false,
-            id: this.maxId++
+        if (!taskName || !taskDescription) {return} else{
+
+            const newTask = {
+                taskName,
+                taskDescription,
+                date:new Date().toLocaleString("en-US"),
+                done: false,
+                id: this.maxId++
+            }
+         this.setState(({data}) => {
+            const newArr = [...data, newTask]
+            return {data: newArr};
+         } );  
         }
-     this.setState(({data}) => {
-        const newArr = [...data, newTask]
-        return {data: newArr};
-     } );  
     }
 
     onChangeTask = (taskNameChanged, taskDescriptionChanged, id) =>{
-        console.log(taskNameChanged, taskDescriptionChanged, id);
-    }
+        if (!taskNameChanged || !taskDescriptionChanged) {return} else{
+
+            const updTask = {
+                taskName: taskNameChanged,
+                taskDescription: taskDescriptionChanged,
+                date:new Date().toLocaleString("en-US"),
+                done: false,
+                id
+                }
+            this.setState(({data}) => ({
+                        data: data.map(item => {
+                        if(item.id === id) {
+                                item = Object.assign({},updTask) 
+                                }
+                           return item;
+                    })
+                }))
+        }
+        }
 
     onDeleteTask = (id) => {
         this.setState(({data}) =>{
@@ -51,6 +74,9 @@ class App extends Component {
         }))
     }
 
+    componentDidUpdate() {
+        localStorage.setItem('data', JSON.stringify(this.state.data))
+    }
 render(){
     const {data} = this.state;
     const doneTasks = this.state.data.filter(item => item.done).length;

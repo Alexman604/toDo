@@ -6,20 +6,11 @@ class TodoItem extends Component {
         super(props);
         this.state = {
             edit: false,
-            taskNameEdit: '',
-            taskDescriptionEdit: ''
+            taskNameEdit: this.props.taskName,
+            taskDescriptionEdit: this.props.taskDescription
         }
-       console.log(props)
+     
     }
-
-    onDeleteTasks = () =>{
-        this.props.onDeleteTask(this.props.id)
-    }
-    
-    onDone = () => {
-        this.props.onToggleDone(this.props.id)
-    }
-
 
     onEdit() {
         this.setState({edit: !this.state.edit});
@@ -32,15 +23,13 @@ class TodoItem extends Component {
    onSubmitChange = (event) => {
     event.preventDefault();
     this.props.onChangeTask(this.state.taskNameEdit, this.state.taskDescriptionEdit, this.props.id)
-    
-
     this.setState({edit: !this.state.edit});
 
    }
  
     render() {   
-        const {taskName, taskDescription, date, done, onDeleteTask, onToggleDone} = this.props; 
-      //  const {taskNameEdit, taskDescriptionEdit} = this.state;
+        const {taskName, taskDescription, date, done} = this.props; 
+        const {taskNameEdit, taskDescriptionEdit} = this.state;
         let taskClassName = "normal"
     if (done) {
         taskClassName += ' crossed'
@@ -49,8 +38,12 @@ class TodoItem extends Component {
 
  return(
     <li className='item'>
-        <button onClick={this.onDeleteTasks}>delete</button>
-        <input type="checkbox" id="done" name="done" onChange={this.onDone}/>
+        <button onClick={() =>{
+        this.props.onDeleteTask(this.props.id)
+    }}>delete</button>
+        <input type="checkbox" id="done" name="done" onChange={() => {
+        this.props.onToggleDone(this.props.id)
+    }}/>
         
         {this.state.edit ? 
         (
@@ -60,22 +53,22 @@ class TodoItem extends Component {
                 type="text" 
                 className="input" 
                 onChange={this.onValueChange} 
-                value={this.state.taskNameEdit} />
+                value={taskNameEdit} />
             <input  
                 name = "taskDescriptionEdit"  
                 type="text" 
                 className="input" 
                 onChange={this.onValueChange} 
-                value={this.state.taskDescriptionEdit} />
+                value={taskDescriptionEdit} />
             <button type="submit">edit</button>
             </form>
         ) : 
         (
-            <>
+            <form>
             <span className={taskClassName} onClick = {()=>this.onEdit()}>{taskName}</span>  
             <span className={taskClassName} onClick = {()=>this.onEdit()}>{taskDescription}</span>
         <span className={taskClassName}>{date}</span>
-        </>
+        </form>
         ) }
 
         
