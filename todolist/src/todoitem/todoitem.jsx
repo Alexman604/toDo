@@ -9,7 +9,6 @@ class TodoItem extends Component {
             taskNameEdit: this.props.taskName,
             taskDescriptionEdit: this.props.taskDescription
         }
-     
     }
 
     onEdit() {
@@ -24,7 +23,6 @@ class TodoItem extends Component {
     event.preventDefault();
     this.props.onChangeTask(this.state.taskNameEdit, this.state.taskDescriptionEdit, this.props.id)
     this.setState({edit: !this.state.edit});
-
    }
  
     render() {   
@@ -38,9 +36,7 @@ class TodoItem extends Component {
 
  return(
     <li className='item'>
-        <button className='btn' onClick={() =>{
-        this.props.onDeleteTask(this.props.id)
-    }}><i class="fa-solid fa-trash-can"></i></button>
+        
         <input type="checkbox" id="done" name="done" onChange={() => {
         this.props.onToggleDone(this.props.id)
     }}/>
@@ -68,6 +64,10 @@ class TodoItem extends Component {
             <span className={taskClassName} onClick = {()=>this.onEdit()}>{taskName}</span>  
             <span className={taskClassName} onClick = {()=>this.onEdit()}>{taskDescription}</span>
         <span className={taskClassName}>{date}</span>
+        <button className='btn' onClick = {()=>this.onEdit()}><i class="fa-solid fa-pen-to-square"></i></button>
+        <button className='btn' onClick={() =>{
+        this.props.onDeleteTask(this.props.id)
+    }}><i class="fa-solid fa-trash-can"></i></button>
         </form>
         ) }
 

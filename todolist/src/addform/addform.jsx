@@ -28,9 +28,15 @@ class AddForm extends Component {
         return (
         <div className="addform">
                 <form className="addform" onSubmit={this.onSubmit}>
-                <input  name = "taskName"  type="text" className="inputName" onChange={this.onValueChange} value={taskName} placeholder="Task Name"/>
-                <textarea  name = "taskDescription"  type="text" className="inputDescription" onChange={this.onValueChange} value={taskDescription} placeholder="Task Description"/>
-                <button type="submit" className="btn"><i class="fa-solid fa-floppy-disk"></i></button>
+                   <div className='inputWrapper'>
+
+                    <input  name = "taskName"  type="text" className="inputName" onChange={this.onValueChange} value={taskName} placeholder="Task Name"/>
+                    <textarea  name = "taskDescription"  type="text" className="inputDescription" onChange={this.onValueChange} value={taskDescription} placeholder="Task Description"/>
+
+                   </div>
+                   
+                   
+                    <button type="submit" className="btn"><i class="fa-solid fa-floppy-disk"></i></button>
                               
             </form>
         </div>

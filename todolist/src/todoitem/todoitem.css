@@ -8,7 +8,13 @@
 
 
 
-li { 
+.item { 
+   max-width: 100%;
+   flex-wrap: nowrap;
     display: flex;
+    align-items: baseline;
+}
 
+.normal {
+    width: 20%;
 }
