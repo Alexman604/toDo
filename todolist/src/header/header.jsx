@@ -5,7 +5,7 @@ return (
     <div className='header'>
         <h1>to do-Do-do-Do-do</h1>
        
-        <h2>finished tasks : {doneTasks} </h2>
+        <h3>finished tasks : {doneTasks} </h3>
 
     </div>
 

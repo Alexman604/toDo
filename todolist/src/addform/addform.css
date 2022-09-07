@@ -17,10 +17,16 @@
     min-height: 100px;
     resize: vertical;
     border-radius: 0.375rem;
+    border: #164A41 solid 1px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    
 }
 .inputName{
     height: 40px;
     border-radius: 0.375rem;
+    padding-left: 3px;
     margin-bottom: 5px;
+    border: #164A41 solid 1px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
    
 }

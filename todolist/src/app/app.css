@@ -7,4 +7,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: auto;
+    background: linear-gradient(120deg, #4D774E 0%, #9DC88D 80%) ;
+
+    
+    background-position: center;
+    offset-path: 30%; 
+    
   }
+
+  .todolist {
+    margin: 0 auto;
+    padding-left: 0px;
+    width: 95%;
+  }
+

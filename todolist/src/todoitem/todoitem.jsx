@@ -37,37 +37,43 @@ class TodoItem extends Component {
  return(
     <li className='item'>
         
-        <input type="checkbox" id="done" name="done" onChange={() => {
-        this.props.onToggleDone(this.props.id)
-    }}/>
+        
         
         {this.state.edit ? 
         (
-           <form onSubmit={this.onSubmitChange}>
+           <form onSubmit={this.onSubmitChange}
+            className = 'formWrapper'>
             <input  
                 name = "taskNameEdit"  
                 type="text" 
-                className="inputName" 
+                className="inputNameEdit" 
                 onChange={this.onValueChange} 
                 value={taskNameEdit} />
-            <input  
+            <textarea  
                 name = "taskDescriptionEdit"  
                 type="text" 
-                className="inputDescription" 
+                className="inputDescriptionEdit" 
                 onChange={this.onValueChange} 
                 value={taskDescriptionEdit} />
-            <button className='btn' type="submit"><i class="fa-solid fa-circle-check"></i></button>
+            <button className='btn' type="submit"><i className="fa-solid fa-circle-check fa-lg"></i></button>
             </form>
         ) : 
         (
-            <form>
+            <form className='formWrapper'>
+            <input type="checkbox" id="done" name="done" onChange={() => {
+                this.props.onToggleDone(this.props.id)
+            }}/>
             <span className={taskClassName} onClick = {()=>this.onEdit()}>{taskName}</span>  
             <span className={taskClassName} onClick = {()=>this.onEdit()}>{taskDescription}</span>
-        <span className={taskClassName}>{date}</span>
-        <button className='btn' onClick = {()=>this.onEdit()}><i class="fa-solid fa-pen-to-square"></i></button>
-        <button className='btn' onClick={() =>{
+                 <div className='btnRight'>
+            <span className={`date  ${taskClassName}`}>{date}</span>
+                    
+                 <button className='btn' onClick = {()=>this.onEdit()}><i className="fa-solid fa-pen-to-square fa-lg"></i></button>
+                <button className='btn' onClick={() =>{
         this.props.onDeleteTask(this.props.id)
-    }}><i class="fa-solid fa-trash-can"></i></button>
+    }}><i className="fa-solid fa-trash-can fa-lg"></i></button>
+
+</div>
         </form>
         ) }
 

@@ -3,21 +3,26 @@ import AddForm from "../addform/addform";
 import Header from "../header/header";
 import TodoItem from "../todoitem/todoitem";
 import "./app.css"
+import moment from 'moment';
 
 class App extends Component {
     constructor (props){
         super(props);
         this.state = {
             data: []
+            
         }
-        this.maxId = 1;
+        
     }
 
     componentDidMount() {
-        localStorage.clear()
+       // localStorage.clear()
         const dataFromLS = JSON.parse(localStorage.getItem('data'));
         if (dataFromLS === null) {localStorage.setItem('data', JSON.stringify(this.state.data))}
-        else   {this.setState(() => ({data: dataFromLS}));}
+        else   {this.setState(() => ({data: dataFromLS}));
+              //  this.setState(() => ({maxId: dataFromLS[dataFromLS.length].id})); 
+              //  console.log(dataFromLS[dataFromLS.length].id);
+                    }
       };
 
     onAddTask = (taskName, taskDescription) => {
@@ -26,9 +31,9 @@ class App extends Component {
             const newTask = {
                 taskName,
                 taskDescription,
-                date:new Date().toLocaleString("en-US"),
+                date: moment().format('lll'),
                 done: false,
-                id: this.maxId++
+                id: moment().format()
             }
          this.setState(({data}) => {
             const newArr = [...data, newTask]
@@ -43,7 +48,7 @@ class App extends Component {
             const updTask = {
                 taskName: taskNameChanged,
                 taskDescription: taskDescriptionChanged,
-                date:new Date().toLocaleString("en-US"),
+                date: moment().format('lll'),
                 done: false,
                 id
                 }
@@ -80,6 +85,7 @@ class App extends Component {
 render(){
     const {data} = this.state;
     const doneTasks = this.state.data.filter(item => item.done).length;
+    console.log(data);
     return(
         <div className="app">
             <Header doneTasks = {doneTasks}/>
