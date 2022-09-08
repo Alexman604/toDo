@@ -5,48 +5,80 @@
 .normal {
     box-sizing: content-box;
     padding: 5px;
-    
     max-width: 280px ;
-    white-space: nowrap;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 0.3rem;
-    
-    
-   
-   
 }
 
 .normal:hover {
-    
     white-space: normal;
     text-overflow: inherit;
     word-wrap: break-word;
     max-width: 280px;
     display: block;
     height: auto;
-      
  }
 
- 
-  
 .formWrapper {
     padding-left: 10px;
-    width: 100%;
+    width: 98%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 5px;
-    background-color:white;
+    background-color:rgba(251, 247, 185, 0.927);
     color:#164A41;
     border-radius: 0.5rem;
     border: solid 1px#164A41;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px,
+     rgba(0, 0, 0, 0.07) 0px 2px 2px, 
+     rgba(0, 0, 0, 0.07) 0px 4px 4px, 
+     rgba(0, 0, 0, 0.07) 0px 8px 8px, 
+     rgba(0, 0, 0, 0.07) 0px 16px 16px;
 
-   
+}
+
+
+.item { 
+    width: 100%;
+}
+
+.inputNameEdit {
+    width: 20%;
+    padding: 3px;
+    background-color: rgba(246, 239, 140, 0.925);
+    border-radius: 0.3rem;
+    border-top-style: groove;
+    border-right-style: groove;
+    border-left-style: groove;
+    border-bottom-style: groove;
+}
+
+.inputDescriptionEdit {
+    border-top-style: groove;
+    border-right-style: groove;
+    border-left-style: groove;
+    border-bottom-style: groove;
+    width: 70%;
+    height: auto;
+    padding: 3px;
+    background-color: rgba(246, 239, 140, 0.925);
+    border-radius: 0.3rem;
+    margin: 0.3rem ;
     
 }
+
+.date {
+    font-size: 0.8rem;
+    align-self: center;
+}
+
+.btnRight {
+    display: flex;
+}
+
 @media (max-width: 450px) { 
 
     .formWrapper {
@@ -55,33 +87,22 @@
        padding: 10px 5px 5px 5px;
        height: auto;
     }
+    .normal {
+        
+        
+        max-width: 80% ;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0.3rem;
+    }
+    .inputNameEdit{
+        width: 80%;
+        height: fit-content;
 
+    }
 
- }
-
-.item { 
-    width: 100%;
-}
-
-
-.inputNameEdit {
-    width: 20%;
-    padding: 3px;
-}
-
-.inputDescriptionEdit {
-    width: 70%;
-    height: auto;
-    padding: 3px;
-
-}
-
-.date {
-    font-size: 0.8rem;
-    overflow: visible;
-    align-self: center;
-}
-
-.btnRight {
-    display: flex;
+    .inputDescriptionEdit{
+        width: 80%;
+    }
 }
